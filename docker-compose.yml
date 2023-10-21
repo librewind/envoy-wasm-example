@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+    envoy:
+        image: envoyproxy/envoy:v1.27.2
+        ports:
+            - '9901:9901'
+            - '8080:8080'
+            - '10000:10000'
+        volumes:
+            - ./envoy.yaml:/etc/envoy/envoy.yaml
+            - ./sip_uri_plugin.wasm:/etc/envoy/sip_uri_plugin.wasm
+        depends_on:
+            - echo1
+            - echo2
+            - echo3
+    echo1:
+        container_name: echo1
+        image: jmalloc/echo-server
+        ports:
+            - '8081:8080'
+        expose:
+            - 8080
+    echo2:
+        container_name: echo2
+        image: jmalloc/echo-server
+        ports:
+            - '8082:8080'
+        expose:
+            - 8080
+    echo3:
+        container_name: echo3
+        image: jmalloc/echo-server
+        ports:
+            - '8083:8080'
+        expose:
+            - 8080

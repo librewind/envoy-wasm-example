@@ -15,6 +15,6 @@ curl --location 'http://localhost:8080/invite' \
 --header 'Cookie: sessionId=8f460feabd589bb867634b99582f7c50' \
 --data-raw '{
     "callId": "1",
-    "uri": "sip:1@dev-sip.webinar.ru;kamailio=test"
+    "uri": "sip:1@dev-sip.local;kamailio=test"
 }'
 ```
